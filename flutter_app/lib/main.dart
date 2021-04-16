@@ -1,7 +1,9 @@
-import 'dart:ffi';
+import'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'komponen/movieViewer.dart';
 
 void main() {
   runApp(MyApp());
@@ -55,51 +57,59 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
           padding: const EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 0.0),
           child: Column(
-            children: [
-              Row(
-                children: [
-                  new Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: new Container(
-                        child: Image.asset ('HI.png'),
-                        width: 200.0,
-                        height: 150.0,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(16.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0xD769A047),
-                              offset: Offset(0.0, 4.0),
-                              blurRadius: 12.0
-                            )
-                          ]
-                        ),
-                      padding: EdgeInsets.all(12.0),
-                      ),
-                  ),
-
-                  new Expanded(
-                      child: new Container(
-                        margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                        child: new Column(
-                          children: [
-                            new Text("Honkai Impact", textAlign: TextAlign.center, style: TextStyle(
-                                fontSize: 28.0,
-                              fontWeight: FontWeight.bold
-                              ),
-                            ),
-                            new Padding(padding: EdgeInsets.all(2.0)),
-                            new Text("Play on PC"),
-                          ],
-                        ),
-                      )
-                  )
-                ],
-              ),
-            ],
+            children: [MovieViewer()],
           ),
         ),
     );
+  }
+}
+
+class MovieDetail extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState()  => _MovieDetailState();
+
+}
+
+class _MovieDetailState extends State<MovieDetail> {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 0.0),
+        child: Column(
+          children: [
+            Center(
+              child:
+              new Text("About Application", textAlign: TextAlign.center,style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold
+              ))),
+              new Padding(padding: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 0.0)),
+              new Text("Honkai Impact 3  is a free-to-play action game for 3D mobile games developed by miHoYo. It is the "
+                  "third installment of the Honkai Series and a continuation of Houkai Gakuen, using many of the same characters"
+                  " from the previous title, with separate new stories. The game is known for combining elements from a variety of genres, "
+                  "from hack-and-slash, social stimulation, bullet hell, platforming, shoot 'em up, and dungeon crawling, which are included in single player"
+                  " and multiplayer modes.", style: TextStyle(
+                fontSize: 18.0
+              )),
+            new Padding(padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0)),
+            new Image.asset("gameplay.jpg"),
+            Spacer(),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 20.0),
+                  child: ElevatedButton(onPressed: () {
+                    Navigator.pop(context);
+                  },child: Text("Back")),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+
   }
 }
